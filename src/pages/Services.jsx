@@ -1,79 +1,118 @@
+import { motion } from 'framer-motion';
+import { Settings, ShieldAlert, Cpu, CheckCircle2, ArrowRight, Zap, ZapOff, HardHat, Cog } from 'lucide-react';
 import { Link } from 'react-router-dom';
+
+const services = [
+    {
+        title: "Mantenimiento Preventivo",
+        id: "preventivo",
+        icon: <Settings className="w-10 h-10 text-blue-400" />,
+        image: "https://images.unsplash.com/photo-1541888086225-ee82522bdc4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+        description: "Protocolos de inspección exhaustivos diseñados para adelantarse a cualquier fallo mecánico o eléctrico en su sistema vertical.",
+        features: ["Ajuste de guías y poleas", "Lubricación especializada", "Pruebas de seguridad de frenado", "Limpieza técnica de cabina y foso"]
+    },
+    {
+        title: "Respuesta Correctiva (24h)",
+        id: "correctivo",
+        icon: <ZapOff className="w-10 h-10 text-red-500" />,
+        image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+        description: "Brigadas de respuesta inmediata listas para resolver averías críticas y rescates en tiempo récord, minimizando el tiempo de inactividad.",
+        features: ["Cambio de cables de tracción", "Reparación de tarjetas electrónicas", "Atención de emergencias 24/7", "Repuestos originales garantizados"]
+    },
+    {
+        title: "Modernización de Equipos",
+        id: "modernizacion",
+        icon: <Cpu className="w-10 h-10 text-cyan-400" />,
+        image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+        description: "Transformamos su ascensor antiguo en un equipo de última generación con eficiencia energética y tecnología inteligente.",
+        features: ["Sistemas de control VVVF", "Iluminación LED inteligente", "Paneles táctiles de alta resolución", "Mejora del confort de viaje"]
+    }
+];
 
 export default function Services() {
     return (
-        <div className="flex-1 px-6 md:px-20 py-16 max-w-7xl mx-auto w-full">
-            <div className="text-center mb-16 space-y-4">
-                <h1 className="text-white text-4xl md:text-5xl font-black leading-tight tracking-tight">
-                    Nuestros Servicios Especializados
-                </h1>
-                <p className="text-slate-400 max-w-2xl mx-auto text-lg">
-                    Soluciones integrales de ingeniería para el transporte vertical industrial, garantizando seguridad, eficiencia y continuidad operativa.
-                </p>
-            </div>
+        <div className="flex-1 w-full bg-slate-950 text-slate-100 overflow-hidden pb-24">
+            {/* Header */}
+            <section className="relative py-32 px-6 flex flex-col items-center text-center">
+                <div className="absolute inset-0 bg-gradient-to-b from-blue-900/10 to-transparent pointer-events-none"></div>
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                    className="z-10"
+                >
+                    <span className="text-blue-500 font-black tracking-[0.4em] uppercase text-sm mb-4 block">Ingeniería Wolf</span>
+                    <h1 className="text-5xl md:text-7xl font-black mb-8">Nuestros Servicios de <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-500">Mantenimiento Élite</span></h1>
+                    <p className="text-xl text-slate-400 max-w-2xl font-light">Especialistas en la salud técnica de su edificio, asegurando que cada viaje sea seguro, silencioso y eficiente.</p>
+                </motion.div>
+            </section>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div className="group flex flex-col bg-slate-900 border border-slate-800 p-8 rounded-xl transition-all hover:border-blue-500/50 hover:shadow-2xl hover:shadow-blue-500/5">
-                    <div className="mb-6 flex items-center justify-center w-14 h-14 rounded-lg bg-blue-500/10 text-blue-500">
-                        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+            {/* Services Loop */}
+            <section className="max-w-7xl mx-auto px-6 space-y-32">
+                {services.map((service, i) => (
+                    <motion.div
+                        key={service.id}
+                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        transition={{ duration: 0.8 }}
+                        className={`grid grid-cols-1 lg:grid-cols-2 gap-16 items-center ${i % 2 !== 0 ? 'lg:flex-row-reverse' : ''}`}
+                    >
+                        <div className={`${i % 2 !== 0 ? 'lg:order-2' : ''}`}>
+                            <div className="relative group">
+                                <div className="absolute -inset-2 bg-gradient-to-r from-blue-500/30 to-cyan-500/30 blur-xl opacity-0 group-hover:opacity-100 transition-opacity rounded-[2.5rem]"></div>
+                                <img
+                                    src={service.image}
+                                    alt={service.title}
+                                    className="relative rounded-[2.5rem] border border-white/10 shadow-2xl h-[450px] w-full object-cover grayscale-[0.5] hover:grayscale-0 transition-all duration-700"
+                                />
+                                <div className="absolute top-8 left-8 bg-slate-950/80 backdrop-blur-md p-4 rounded-2xl border border-white/10">
+                                    {service.icon}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className={`space-y-8 ${i % 2 !== 0 ? 'lg:order-1' : ''}`}>
+                            <h2 className="text-4xl font-black">{service.title}</h2>
+                            <p className="text-lg text-slate-400 font-light leading-relaxed">
+                                {service.description}
+                            </p>
+                            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                {service.features.map((feature, idx) => (
+                                    <li key={idx} className="flex items-center gap-3 bg-slate-900/40 p-3 rounded-xl border border-white/5">
+                                        <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
+                                        <span className="text-sm font-medium text-slate-300">{feature}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                            <Link to="/contacto" className="inline-flex items-center gap-2 bg-white text-slate-950 px-8 py-4 rounded-xl font-bold hover:scale-105 transition-all">
+                                Cotizar este servicio <ArrowRight className="w-5 h-5" />
+                            </Link>
+                        </div>
+                    </motion.div>
+                ))}
+            </section>
+
+            {/* Trust Grid */}
+            <section className="max-w-7xl mx-auto px-6 mt-40">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div className="bg-slate-900/50 p-10 rounded-[2.5rem] border border-white/5 text-center">
+                        <HardHat className="w-12 h-12 text-blue-500 mx-auto mb-6" />
+                        <h3 className="text-xl font-bold mb-4">Personal Certificado</h3>
+                        <p className="text-slate-400 text-sm font-light">Todo nuestro equipo cuenta con licencias técnicas vigentes y seguros de riesgo certificados.</p>
                     </div>
-                    <h3 className="text-white text-xl font-bold mb-3">Mantenimiento Preventivo</h3>
-                    <p className="text-slate-400 text-base leading-relaxed mb-6">
-                        Inspecciones regulares y técnicas de diagnóstico predictivo para garantizar la longevidad y seguridad de sus equipos industriales.
-                    </p>
-                    <div className="mt-auto">
-                        <Link className="inline-flex items-center text-blue-500 font-bold hover:gap-2 transition-all" to="/contacto">
-                            Saber Más
-                            <svg className="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                        </Link>
+                    <div className="bg-slate-900/50 p-10 rounded-[2.5rem] border border-white/5 text-center">
+                        <Cog className="w-12 h-12 text-cyan-500 mx-auto mb-6" />
+                        <h3 className="text-xl font-bold mb-4">Maquinaria de Punta</h3>
+                        <p className="text-slate-400 text-sm font-light">Utilizamos herramientas de diagnóstico láser y software de análisis predictivo único en el mercado.</p>
+                    </div>
+                    <div className="bg-slate-900/50 p-10 rounded-[2.5rem] border border-white/5 text-center">
+                        <Zap className="w-12 h-12 text-yellow-500 mx-auto mb-6" />
+                        <h3 className="text-xl font-bold mb-4">Soporte Express</h3>
+                        <p className="text-slate-400 text-sm font-light">Línea directa de ingeniería para resolver dudas técnicas críticas en menos de 15 minutos.</p>
                     </div>
                 </div>
-
-                <div className="group flex flex-col bg-slate-900 border border-slate-800 p-8 rounded-xl transition-all hover:border-blue-500/50 hover:shadow-2xl hover:shadow-blue-500/5">
-                    <div className="mb-6 flex items-center justify-center w-14 h-14 rounded-lg bg-red-500/10 text-red-500">
-                        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-                    </div>
-                    <h3 className="text-white text-xl font-bold mb-3">Respuesta Correctiva</h3>
-                    <p className="text-slate-400 text-base leading-relaxed mb-6">
-                        Reparaciones rápidas 24/7 con repuestos originales ante cualquier falla técnica, minimizando los tiempos de inactividad operativa.
-                    </p>
-                    <div className="mt-auto">
-                        <Link className="inline-flex items-center text-blue-500 font-bold hover:gap-2 transition-all" to="/contacto">
-                            Solicitar Rescate
-                            <svg className="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                        </Link>
-                    </div>
-                </div>
-
-                <div className="group flex flex-col bg-slate-900 border border-slate-800 p-8 rounded-xl transition-all hover:border-blue-500/50 hover:shadow-2xl hover:shadow-blue-500/5">
-                    <div className="mb-6 flex items-center justify-center w-14 h-14 rounded-lg bg-green-500/10 text-green-500">
-                        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                    </div>
-                    <h3 className="text-white text-xl font-bold mb-3">Modernización de Equipos</h3>
-                    <p className="text-slate-400 text-base leading-relaxed mb-6">
-                        Actualización tecnológica de sistemas de control y tracción para mejorar la eficiencia energética y el rendimiento general.
-                    </p>
-                    <div className="mt-auto">
-                        <Link className="inline-flex items-center text-blue-500 font-bold hover:gap-2 transition-all" to="/contacto">
-                            Pedir Presupuesto
-                            <svg className="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                        </Link>
-                    </div>
-                </div>
-            </div>
-
-            <div className="mt-20 rounded-2xl overflow-hidden relative h-[400px]">
-                <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 to-transparent z-10"></div>
-                <div className="absolute inset-0 bg-center bg-cover" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1541888086225-ee82522bdc4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')" }}></div>
-                <div className="relative z-20 flex flex-col justify-center h-full px-10 max-w-xl">
-                    <h2 className="text-white text-3xl font-bold mb-4">¿Necesita un diagnóstico técnico?</h2>
-                    <p className="text-slate-300 mb-8">Nuestros ingenieros están listos para evaluar sus sistemas y proponer el mejor plan de mantenimiento.</p>
-                    <div className="flex gap-4">
-                        <Link to="/contacto" className="bg-blue-600 hover:bg-blue-500 text-white px-6 py-3 rounded-lg font-bold transition-colors">Contactar Ingeniería</Link>
-                        <Link to="/contacto" className="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/20 px-6 py-3 rounded-lg font-bold transition-colors">Línea de Emergencia</Link>
-                    </div>
-                </div>
-            </div>
+            </section>
         </div>
     );
 }

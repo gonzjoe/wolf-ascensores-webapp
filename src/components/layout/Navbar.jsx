@@ -17,6 +17,7 @@ export default function Navbar() {
 
     const links = [
         { name: 'Inicio', path: '/' },
+        { name: 'Nosotros', path: '/nosotros' },
         { name: 'Ingeniería', path: '/servicios' },
         { name: 'Soporte 24/7', path: '/contacto' },
     ];
