@@ -85,12 +85,34 @@ export default function Services() {
                                     </li>
                                 ))}
                             </ul>
-                            <Link to="/contacto" className="inline-flex items-center gap-2 bg-white text-slate-950 px-8 py-4 rounded-xl font-bold hover:scale-105 transition-all">
-                                Cotizar este servicio <ArrowRight className="w-5 h-5" />
+                            <Link to={`/servicios/${service.id}`} className="inline-flex items-center gap-2 bg-white text-slate-950 px-8 py-4 rounded-xl font-bold hover:scale-105 transition-all">
+                                Saber más <ArrowRight className="w-5 h-5" />
                             </Link>
                         </div>
                     </motion.div>
                 ))}
+            </section>
+
+            {/* FAQ Section */}
+            <section className="max-w-4xl mx-auto px-6 py-40">
+                <h2 className="text-4xl font-black text-center mb-16 text-white">Preguntas Frecuentes</h2>
+                <div className="space-y-6">
+                    {[
+                        { q: "¿Cada cuánto debe hacerse el mantenimiento?", a: "Dependiendo del tráfico y la antigüedad, recomendamos una inspección mensual para equipos industriales y bimestral para residenciales." },
+                        { q: "¿Realizan reparaciones a todas las marcas?", a: "Sí, nuestros ingenieros están capacitados para intervenir sistemas Otis, Schindler, Mitsubishi, ThyssenKrupp y marcas genéricas internacionales." },
+                        { q: "¿Tienen cobertura nacional?", a: "Actualmente operamos en las principales zonas industriales y centros urbanos metropolitanos con brigadas locales." }
+                    ].map((faq, i) => (
+                        <motion.div
+                            key={i}
+                            initial={{ opacity: 0, y: 10 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            className="bg-slate-900/30 p-8 rounded-3xl border border-white/5"
+                        >
+                            <h3 className="text-xl font-bold text-cyan-400 mb-4">{faq.q}</h3>
+                            <p className="text-slate-400 font-light">{faq.a}</p>
+                        </motion.div>
+                    ))}
+                </div>
             </section>
 
             {/* Trust Grid */}

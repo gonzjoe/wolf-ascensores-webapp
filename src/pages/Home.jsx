@@ -175,6 +175,36 @@ export default function Home() {
                 </div>
             </section>
 
+            {/* Testimonials */}
+            <section className="py-32 bg-slate-900/20">
+                <div className="max-w-7xl mx-auto px-6 text-center">
+                    <h2 className="text-4xl md:text-6xl font-black text-white mb-20 text-center">Nuestros Clientes</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        {[
+                            { name: "Carlos Mendoza", role: "Admin. Centro Corporativo Titán", text: "Wolf transformó nuestra matriz de mantenimiento. El tiempo de respuesta es inigualable." },
+                            { name: "Elena Suárez", role: "Jefe de Operaciones Hotel Grand", text: "La modernización Gearless redujo nuestro consumo eléctrico notablemente. Ingeniería de verdad." },
+                            { name: "Roberto Díaz", role: "Residencial Las Encinas", text: "Atención 24/7 real. Tuvimos una emergencia un domingo y en 40 minutos estaba resuelta." }
+                        ].map((t, i) => (
+                            <motion.div
+                                key={i}
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                className="bg-slate-900/40 p-10 rounded-[2.5rem] border border-white/5 text-left"
+                            >
+                                <div className="flex gap-1 mb-6">
+                                    {[...Array(5)].map((_, i) => <Zap key={i} className="w-4 h-4 text-yellow-400 fill-yellow-400" />)}
+                                </div>
+                                <p className="text-slate-300 italic mb-8 font-light">"{t.text}"</p>
+                                <div>
+                                    <p className="text-white font-bold">{t.name}</p>
+                                    <p className="text-cyan-500 text-sm">{t.role}</p>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
             {/* CTA Section Premium */}
             <section className="py-20 px-6">
                 <motion.div
